@@ -13,7 +13,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(params_lists)
+    @list = List.new(list_params)
     if @list.save
       redirect_to list_path(@list)
     else
@@ -27,14 +27,14 @@ class ListsController < ApplicationController
 
   def update
     @list = List.find(params[:id])
-    @list.update(parans[:id])
+    @list.update(params[:id])
 
-    redirect_to tasks_path(@list)
+    redirect_to list_path(@list)
   end
 
   def destroy
     @list.destroy
-    redirect_to lists_path
+    redirect_to lists_path(@lists)
   end
 
   private
